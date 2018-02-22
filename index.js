@@ -8,17 +8,18 @@ cbot.on('ready', () => {
 
 const prefix = ";"
 
+cbot.on('guildCreate', guild => {
+  guild.leave()
+}); 
+
 cbot.on('message', msg => {
   if (msg.author.bot) return;
-  if (msg.guild.id !== "350441231937044491" && msg.content.startsWith(prefix + "ping" || "subscribe" || "unsubscribe") === true) {
-    return msg.channel.send("Sorry, my commands are not available on this server!")
-  }
 
   if (msg.content.startsWith(prefix + 'ping')) {
     msg.channel.send("Pinging...").then(sent => {
-    sent.edit(`Pong! (${sent.createdTimestamp - msg.createdTimestamp}ms)`)
-  })
-}
+      sent.edit(`Pong! (${sent.createdTimestamp - msg.createdTimestamp}ms)`)
+    })
+  }
 
   if (msg.content.startsWith(prefix + 'subscribe')) {
     let args = msg.content.split(" ").slice(1).join(" ")
